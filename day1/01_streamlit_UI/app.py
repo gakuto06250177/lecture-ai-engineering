@@ -1,203 +1,84 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import time
 
-# ============================================
-# ページ設定
-# ============================================
-# st.set_page_config(
-#     page_title="Streamlit デモ",
-#     layout="wide",
-#     initial_sidebar_state="expanded"
-# )
+st.set_page_config(
+    page_title="Tesla, Inc. 企業概要",
+    layout="wide",
+    initial_sidebar_state="auto"
+)
 
-# ============================================
-# タイトルと説明
-# ============================================
-st.title("Streamlit 初心者向けデモ")
-st.markdown("### コメントを解除しながらStreamlitの機能を学びましょう")
-st.markdown("このデモコードでは、コメントアウトされた部分を順番に解除しながらUIの変化を確認できます。")
-
-# ============================================
-# サイドバー 
-# ============================================
-st.sidebar.header("デモのガイド")
-st.sidebar.info("コードのコメントを解除して、Streamlitのさまざまな機能を確認しましょう。")
-
-# ============================================
-# 基本的なUI要素
-# ============================================
-st.header("基本的なUI要素")
-
-# テキスト入力
-st.subheader("テキスト入力")
-name = st.text_input("あなたの名前", "ゲスト")
-st.write(f"こんにちは、{name}さん！")
-
-# ボタン
-# st.subheader("ボタン")
-# if st.button("クリックしてください"):
-#     st.success("ボタンがクリックされました！")
-
-# チェックボックス
-# st.subheader("チェックボックス")
-# if st.checkbox("チェックを入れると追加コンテンツが表示されます"):
-#     st.info("これは隠れたコンテンツです！")
-
-# スライダー
-# st.subheader("スライダー")
-# age = st.slider("年齢", 0, 100, 25)
-# st.write(f"あなたの年齢: {age}")
-
-# セレクトボックス
-# st.subheader("セレクトボックス")
-# option = st.selectbox(
-#     "好きなプログラミング言語は?",
-#     ["Python", "JavaScript", "Java", "C++", "Go", "Rust"]
-# )
-# st.write(f"あなたは{option}を選びました")
-
-# ============================================
-# レイアウト
-# ============================================
-# st.header("レイアウト")
-
-# カラム
-# st.subheader("カラムレイアウト")
-# col1, col2 = st.columns(2)
-# with col1:
-#     st.write("これは左カラムです")
-#     st.number_input("数値を入力", value=10)
-# with col2:
-#     st.write("これは右カラムです")
-#     st.metric("メトリクス", "42", "2%")
-
-# タブ
-# st.subheader("タブ")
-# tab1, tab2 = st.tabs(["第1タブ", "第2タブ"])
-# with tab1:
-#     st.write("これは第1タブの内容です")
-# with tab2:
-#     st.write("これは第2タブの内容です")
-
-# エクスパンダー
-# st.subheader("エクスパンダー")
-# with st.expander("詳細を表示"):
-#     st.write("これはエクスパンダー内の隠れたコンテンツです")
-#     st.code("print('Hello, Streamlit！')")
-
-# ============================================
-# データ表示
-# ============================================
-# st.header("データの表示")
-
-# サンプルデータフレームを作成
-# df = pd.DataFrame({
-#     '名前': ['田中', '鈴木', '佐藤', '高橋', '伊藤'],
-#     '年齢': [25, 30, 22, 28, 33],
-#     '都市': ['東京', '大阪', '福岡', '札幌', '名古屋']
-# })
-
-# データフレーム表示
-# st.subheader("データフレーム")
-# st.dataframe(df, use_container_width=True)
-
-# テーブル表示
-# st.subheader("テーブル")
-# st.table(df)
-
-# メトリクス表示
-# st.subheader("メトリクス")
-# col1, col2, col3 = st.columns(3)
-# col1.metric("温度", "23°C", "1.5°C")
-# col2.metric("湿度", "45%", "-5%")
-# col3.metric("気圧", "1013hPa", "0.1hPa")
-
-# ============================================
-# グラフ表示
-# ============================================
-# st.header("グラフの表示")
-
-# ラインチャート
-# st.subheader("ラインチャート")
-# chart_data = pd.DataFrame(
-#     np.random.randn(20, 3),
-#     columns=['A', 'B', 'C'])
-# st.line_chart(chart_data)
-
-# バーチャート
-# st.subheader("バーチャート")
-# chart_data = pd.DataFrame({
-#     'カテゴリ': ['A', 'B', 'C', 'D'],
-#     '値': [10, 25, 15, 30]
-# }).set_index('カテゴリ')
-# st.bar_chart(chart_data)
-
-# ============================================
-# インタラクティブ機能
-# ============================================
-# st.header("インタラクティブ機能")
-
-# プログレスバー
-# st.subheader("プログレスバー")
-# progress = st.progress(0)
-# if st.button("進捗をシミュレート"):
-#     for i in range(101):
-#         time.sleep(0.01)
-#         progress.progress(i / 100)
-#     st.balloons()
-
-# ファイルアップロード
-# st.subheader("ファイルアップロード")
-# uploaded_file = st.file_uploader("ファイルをアップロード", type=["csv", "txt"])
-# if uploaded_file is not None:
-#     # ファイルのデータを表示
-#     bytes_data = uploaded_file.getvalue()
-#     st.write(f"ファイルサイズ: {len(bytes_data)} bytes")
-#     
-#     # CSVの場合はデータフレームとして読み込む
-#     if uploaded_file.name.endswith('.csv'):
-#         df = pd.read_csv(uploaded_file)
-#         st.write("CSVデータのプレビュー:")
-#         st.dataframe(df.head())
-
-# ============================================
-# カスタマイズ
-# ============================================
-# st.header("スタイルのカスタマイズ")
-
-# カスタムCSS
-# st.markdown("""
-# <style>
-# .big-font {
-#     font-size:20px ！important;
-#     font-weight: bold;
-#     color: #0066cc;
-# }
-# </style>
-# """, unsafe_allow_html=True)
-# 
-# st.markdown('<p class="big-font">これはカスタムCSSでスタイリングされたテキストです！</p>', unsafe_allow_html=True)
-
-# ============================================
-# デモの使用方法
-# ============================================
-st.divider()
-st.subheader("このデモの使い方")
+st.title("Tesla, Inc. (テスラ)")
+st.subheader("電気自動車(EV)とクリーンエネルギーのリーディングカンパニー")
 st.markdown("""
-1. コードエディタでコメントアウトされた部分を見つけます（#で始まる行）
-2. 確認したい機能のコメントを解除します（先頭の#を削除）
-3. 変更を保存して、ブラウザで結果を確認します
-4. 様々な組み合わせを試して、UIがどのように変化するか確認しましょう
+Teslaは、アメリカ合衆国テキサス州オースティンに本社を置き、
+電気自動車、バッテリーエネルギー貯蔵、太陽光パネル、関連製品およびサービスを設計・製造・販売する企業です。
+**「持続可能なエネルギーへ、世界の移行を加速する」** ことをミッションに掲げています。
 """)
+st.divider()
 
-st.code("""
-# コメントアウトされた例:
-# if st.button("クリックしてください"):
-#     st.success("ボタンがクリックされました！")
+tab_overview, tab_ev, tab_energy = st.tabs([
+    "企業概要",
+    "電気自動車 (EV) 事業",
+    "エネルギー事業"
+])
 
-# コメントを解除した例:
-if st.button("クリックしてください"):
-    st.success("ボタンがクリックされました！")
-""")
+with tab_overview:
+    st.header("企業概要")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("基本情報")
+        st.markdown("""
+        * **本社所在地:** アメリカ合衆国 テキサス州 オースティン
+        * **CEO:** イーロン・マスク (Elon Musk)
+        * **設立:** 2003年
+        * **日本法人:** Tesla Japan合同会社
+            * *(旧社名: Tesla Motors Japan合同会社、2024年5月に現社名へ変更)*
+        """)
+    with col2:
+        st.subheader("ミッション")
+        st.info("**「持続可能なエネルギーへ、世界の移行を加速する」**")
+        st.write("単なる自動車製造に留まらず、エネルギー生成・貯蔵を含むエコシステム全体での変革を目指しています。")
+    st.image("/content/lecture-ai-engineering/day1/01_streamlit_UI/assets/181010_tesla.png", use_container_width=True)
+
+with tab_ev:
+    st.header("電気自動車 (EV) 事業")
+    st.write("Teslaの中核事業であり、革新的なEVを設計・製造・販売しています。")
+
+    st.subheader("主な車種ラインナップ")
+    col_s3, col_xy, col_cyber = st.columns(3)
+    with col_s3:
+        st.markdown("Model S")
+        st.markdown("**Model 3**")
+    with col_xy:
+        st.markdown("**Model X**")
+        st.markdown("**Model Y**")
+    with col_cyber:
+        st.markdown("**Cybertruck**")
+
+    st.subheader("EV事業の特徴")
+    st.markdown("""
+    * **高性能・長航続距離:** パフォーマンスと実用性を両立。
+    * **先進的なデザイン:** シンプルかつ未来的な内外装。
+    * **独自の急速充電網:** 「スーパーチャージャー」ネットワークを世界展開。
+    * **ソフトウェア中心設計:** OTA (Over-the-Air)アップデートによる機能向上。
+    * **自動運転支援技術:**
+        * **Autopilot (オートパイロット):** 標準的な運転支援機能。
+        * **FSD (Full Self-Driving):** より高度な自動運転を目指すオプション機能 (開発中・地域により機能制限あり)。
+    * **オンライン直販モデル:** ディーラーを介さない販売方式。
+    """)
+
+with tab_energy:
+    st.header("エネルギー事業")
+    st.write("EV事業と並行し、クリーンエネルギーの生成・貯蔵・利用を促進する製品を展開しています。")
+
+    col_power, col_mega, col_solar = st.columns(3)
+    with col_power:
+        st.subheader("Powerwall (パワーウォール)")
+        st.write("太陽光発電で生成した電力や、安価な深夜電力を貯蔵し、家庭でのエネルギー自給自足やピークカットに貢献します。")
+    with col_mega:
+        st.subheader("Megapack (メガパック)")
+        st.write("電力会社や大規模施設向け。電力網の安定化や再生可能エネルギーの導入拡大を支援します。")
+    with col_solar:
+        st.subheader("太陽光発電")
+        st.write("屋根材一体型の「Solar Roof」や、従来の太陽光パネルを提供し、エネルギー生成を担います。")
+
+    st.info("これらの製品群により、Teslaはエネルギーの生成から貯蔵、消費（EV充電など）までを一貫してサポートするエコシステムを目指しています。")
